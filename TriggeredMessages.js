@@ -1,31 +1,20 @@
+function triggerGMT() {
+   // first send the latest rankings
+   return sendTotals(chatId);
+   // then ask for the drink volume
+   return askAlcohol(chatId);
+}
+
+function triggerPST() {
+    // ask for the drink volume
+	return askAlcohol(pstChatId);
+}
+
 /**
  * Asks the user(s) how much alcohol they had today. It generates
  * the keyboard, which is the set of canned responses
  */
-function askAlcohol(chat_id = chatId) {
-	// first send the latest rankings
-    sendTotals(chat_id);
-    
-    // then ask for the drink volume
-    var message = "How many drinks did you have today, " + weekdayAndDate() + "?";
-  
-    var alcoholKeyboard = {inline_keyboard: [[{text: "🚫", callback_data: "0"}, 
-                                              {text: "🍺", callback_data: "1"},
-                                              {text: "🍺🍺", callback_data: "2"},
-                                              {text: "🥴 3+", callback_data: "3+"}
-                                            ]]};
-        
-    return sendQuestion(chat_id, message, keyboard = alcoholKeyboard);
-}
-
-/**
- * PST VERSION!!! Asks the user(s) how much alcohol they had today. 
- */
-function pstAskAlcohol(chat_id = pstChatId) {
-	// first send the latest rankings
-    //sendTotals(chat_id);
-    
-    // then ask for the drink volume
+function askAlcohol(chat_id) {
     var message = "How many drinks did you have today, " + weekdayAndDate() + "?";
   
     var alcoholKeyboard = {inline_keyboard: [[{text: "🚫", callback_data: "0"}, 
@@ -42,7 +31,7 @@ function pstAskAlcohol(chat_id = pstChatId) {
  * Pulls the summary statistics, then sends them to the group
  *
  */
-function sendTotals(chat_id = chatId) {
+function sendTotals(chat_id) {
   var totals = SpreadsheetApp.openById(spreadsheetId).getSheetByName("Summary")
     .getDataRange().getValues();
   

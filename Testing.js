@@ -11,15 +11,6 @@ function testAskAlcohol() {
 	return askAlcohol(debugChatId);
 }
 
-function testPSTAskAlcohol() {
-	return pstAskAlcohol();
-}
-
-function testPSTTotals() {
-    sendTotals(pstChatId);
-}
-
-
 
 function recordResponseTest() {
   SpreadsheetApp.openById(spreadsheetId).getSheetByName("Data")

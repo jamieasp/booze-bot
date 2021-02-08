@@ -5,7 +5,7 @@
  * @param {string} text The message to send
  */
 function sendMessage(chat_id, text, disable_notification = false) {
-    Logger.log("Sending to room " + chat_id);
+    Logger.log("Sending to room " + JSON.stringify(chat_id));
     // Make a POST request with a JSON payload.
     var data = {
       'chat_id': chat_id,
@@ -46,7 +46,8 @@ function sendImageByUrl(chat_id, image_url) {
  * @param {keyboard} object The canned responses that the user can tap
  */
 function sendQuestion(chat_id, text, keyboard) {
-    // Make a POST request with a JSON payload.
+  Logger.log("Sending to room " + JSON.stringify(chat_id));
+  // Make a POST request with a JSON payload.
     var data = {
       'chat_id': chat_id,
       'text': text,
