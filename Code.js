@@ -20,11 +20,15 @@ function doPost(e) {
     var message = contents.callback_query.message;
     var responder_first_name = contents.callback_query.from.first_name;
     var original_question = message.text;
-    var chatroom_id = message.chat.id;
-    
+    //var chatroom_id = message.chat.id;
+    //hardcode responses to the primary chatroom (even if they came from the PST room)
+    var chatroom_id = chatId;
     recordResponse(responder_first_name, original_question, cleaned_choice);
     answerCallback(callback_query_id, "Ack");
-    sendMessage(chatroom_id, responder_first_name + " drank " + users_choice );
+    
+    if(message.chat.id == pstChatId) { sendMessage(pstChatId, "Thanks, I'll let the other chat know", disable_notification=true); }
+    
+    sendMessage(chatroom_id, responder_first_name + " drank " + users_choice, disable_notification=true);
   }
   // handle regular messages
   else {

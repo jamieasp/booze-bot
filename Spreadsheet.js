@@ -7,7 +7,7 @@
  */
 function spreadsheetLog(note, log_message) {
   SpreadsheetApp.openById(spreadsheetId).getSheetByName("Logs")
-    .appendRow([Utilities.formatDate(new Date(), 'America/Los_Angeles', 'YYYY-MM-DD HH:mm:ss Z'), note, log_message]);
+    .appendRow([Utilities.formatDate(new Date(), 'America/Los_Angeles', 'YYYY-MM-d HH:mm:ss Z'), note, log_message]);
 }
 
 /**
@@ -19,5 +19,5 @@ function spreadsheetLog(note, log_message) {
  */
 function recordResponse(user, question, response) {
   SpreadsheetApp.openById(spreadsheetId).getSheetByName("Data")
-    .appendRow([Utilities.formatDate(new Date(), 'America/Los_Angeles', 'YYYY-MM-DD HH:mm:ss Z'), user, question, response]);
+    .appendRow([Utilities.formatDate(new Date(), 'America/Los_Angeles', 'YYYY-MM-dd HH:mm:ss Z'), user, question, response]);
 }

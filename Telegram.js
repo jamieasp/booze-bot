@@ -4,12 +4,14 @@
  * @param {string} chat_id The chatroom to message
  * @param {string} text The message to send
  */
-function sendMessage(chat_id, text) {
+function sendMessage(chat_id, text, disable_notification = false) {
+    Logger.log("Sending to room " + chat_id);
     // Make a POST request with a JSON payload.
     var data = {
       'chat_id': chat_id,
       'text': text,
-      'parse_mode': "HTML"
+      'parse_mode': "HTML",
+      'disable_notification': disable_notification
     };
     var options = {
       'method' : 'post',
@@ -19,6 +21,21 @@ function sendMessage(chat_id, text) {
     };
     var response = UrlFetchApp.fetch(telegramUrl + "/sendMessage", options);
     spreadsheetLog("Sent message", response);
+}
+
+function sendImageByUrl(chat_id, image_url) {
+    var data = {
+      'chat_id': chat_id,
+      'photo': image_url
+    }
+    var options = {
+      'method' : 'post',
+      'contentType': 'application/json',
+      // Convert the JavaScript object to a JSON string.
+      'payload' : JSON.stringify(data)
+    };
+    var response = UrlFetchApp.fetch(telegramUrl + "/sendPhoto", options);
+    spreadsheetLog("Sent image by url", response);
 }
 
 /**
